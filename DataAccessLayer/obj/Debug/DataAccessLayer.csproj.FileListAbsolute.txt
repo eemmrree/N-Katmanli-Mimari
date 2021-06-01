@@ -1,0 +1,17 @@
+C:\Users\eemmr\source\repos\MvcProjeKatmanli\DataAccessLayer\bin\Debug\DataAccessLayer.dll.config
+C:\Users\eemmr\source\repos\MvcProjeKatmanli\DataAccessLayer\bin\Debug\DataAccessLayer.dll
+C:\Users\eemmr\source\repos\MvcProjeKatmanli\DataAccessLayer\bin\Debug\DataAccessLayer.pdb
+C:\Users\eemmr\source\repos\MvcProjeKatmanli\DataAccessLayer\bin\Debug\EntityFramework.dll
+C:\Users\eemmr\source\repos\MvcProjeKatmanli\DataAccessLayer\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\eemmr\source\repos\MvcProjeKatmanli\DataAccessLayer\bin\Debug\EntityLayer.dll
+C:\Users\eemmr\source\repos\MvcProjeKatmanli\DataAccessLayer\bin\Debug\EntityLayer.pdb
+C:\Users\eemmr\source\repos\MvcProjeKatmanli\DataAccessLayer\bin\Debug\EntityLayer.dll.config
+C:\Users\eemmr\source\repos\MvcProjeKatmanli\DataAccessLayer\bin\Debug\EntityFramework.xml
+C:\Users\eemmr\source\repos\MvcProjeKatmanli\DataAccessLayer\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\eemmr\source\repos\MvcProjeKatmanli\DataAccessLayer\obj\Debug\DataAccessLayer.csprojAssemblyReference.cache
+C:\Users\eemmr\source\repos\MvcProjeKatmanli\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.CoreCompileInputs.cache
+C:\Users\eemmr\source\repos\MvcProjeKatmanli\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.CopyComplete
+C:\Users\eemmr\source\repos\MvcProjeKatmanli\DataAccessLayer\obj\Debug\DataAccessLayer.dll
+C:\Users\eemmr\source\repos\MvcProjeKatmanli\DataAccessLayer\obj\Debug\DataAccessLayer.pdb
+C:\Users\eemmr\source\repos\MvcProjeKatmanli\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.mg1.resources
+C:\Users\eemmr\source\repos\MvcProjeKatmanli\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.GenerateResource.cache
