@@ -5,8 +5,8 @@ C:\Users\eemmr\source\repos\MvcProjeKatmanli\EntityLayer\bin\Debug\EntityFramewo
 C:\Users\eemmr\source\repos\MvcProjeKatmanli\EntityLayer\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\eemmr\source\repos\MvcProjeKatmanli\EntityLayer\bin\Debug\EntityFramework.xml
 C:\Users\eemmr\source\repos\MvcProjeKatmanli\EntityLayer\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\eemmr\source\repos\MvcProjeKatmanli\EntityLayer\obj\Debug\EntityLayer.csprojAssemblyReference.cache
 C:\Users\eemmr\source\repos\MvcProjeKatmanli\EntityLayer\obj\Debug\EntityLayer.csproj.CoreCompileInputs.cache
 C:\Users\eemmr\source\repos\MvcProjeKatmanli\EntityLayer\obj\Debug\EntityLayer.csproj.CopyComplete
 C:\Users\eemmr\source\repos\MvcProjeKatmanli\EntityLayer\obj\Debug\EntityLayer.dll
 C:\Users\eemmr\source\repos\MvcProjeKatmanli\EntityLayer\obj\Debug\EntityLayer.pdb
+C:\Users\eemmr\source\repos\MvcProjeKatmanli\EntityLayer\obj\Debug\EntityLayer.csproj.AssemblyReference.cache

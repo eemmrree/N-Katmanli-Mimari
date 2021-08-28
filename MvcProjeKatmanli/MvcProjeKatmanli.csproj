@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -25,6 +27,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>4.1</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,6 +48,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.10.1.0\lib\netstandard2.0\FluentValidation.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -120,24 +132,295 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\AdminCategoryController.cs" />
+    <Compile Include="Controllers\AdminHomeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\WriterController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\dist\css\adminlte.css" />
+    <Content Include="Admin\dist\css\adminlte.min.css" />
+    <Content Include="Admin\dist\css\alt\adminlte.components.css" />
+    <Content Include="Admin\dist\css\alt\adminlte.components.min.css" />
+    <Content Include="Admin\dist\css\alt\adminlte.core.css" />
+    <Content Include="Admin\dist\css\alt\adminlte.core.min.css" />
+    <Content Include="Admin\dist\css\alt\adminlte.extra-components.css" />
+    <Content Include="Admin\dist\css\alt\adminlte.extra-components.min.css" />
+    <Content Include="Admin\dist\css\alt\adminlte.pages.css" />
+    <Content Include="Admin\dist\css\alt\adminlte.pages.min.css" />
+    <Content Include="Admin\dist\css\alt\adminlte.plugins.css" />
+    <Content Include="Admin\dist\css\alt\adminlte.plugins.min.css" />
+    <Content Include="Admin\dist\img\2.png" />
+    <Content Include="Admin\dist\img\4.png" />
+    <Content Include="Admin\dist\img\AdminLTELogo.png" />
+    <Content Include="Admin\dist\img\avatar.png" />
+    <Content Include="Admin\dist\img\avatar04.png" />
+    <Content Include="Admin\dist\img\avatar2.png" />
+    <Content Include="Admin\dist\img\avatar3.png" />
+    <Content Include="Admin\dist\img\avatar5.png" />
+    <Content Include="Admin\dist\img\boxed-bg.jpg" />
+    <Content Include="Admin\dist\img\boxed-bg.png" />
+    <Content Include="Admin\dist\img\credit\american-express.png" />
+    <Content Include="Admin\dist\img\credit\cirrus.png" />
+    <Content Include="Admin\dist\img\credit\mastercard.png" />
+    <Content Include="Admin\dist\img\credit\mestro.png" />
+    <Content Include="Admin\dist\img\credit\paypal.png" />
+    <Content Include="Admin\dist\img\credit\paypal2.png" />
+    <Content Include="Admin\dist\img\credit\visa.png" />
+    <Content Include="Admin\dist\img\default-150x150.png" />
+    <Content Include="Admin\dist\img\icons.png" />
+    <Content Include="Admin\dist\img\photo1.png" />
+    <Content Include="Admin\dist\img\photo2.png" />
+    <Content Include="Admin\dist\img\photo3.jpg" />
+    <Content Include="Admin\dist\img\photo4.jpg" />
+    <Content Include="Admin\dist\img\prod-1.jpg" />
+    <Content Include="Admin\dist\img\prod-2.jpg" />
+    <Content Include="Admin\dist\img\prod-3.jpg" />
+    <Content Include="Admin\dist\img\prod-4.jpg" />
+    <Content Include="Admin\dist\img\prod-5.jpg" />
+    <Content Include="Admin\dist\img\user1-128x128.jpg" />
+    <Content Include="Admin\dist\img\user2-160x160.jpg" />
+    <Content Include="Admin\dist\img\user3-128x128.jpg" />
+    <Content Include="Admin\dist\img\user4-128x128.jpg" />
+    <Content Include="Admin\dist\img\user5-128x128.jpg" />
+    <Content Include="Admin\dist\img\user6-128x128.jpg" />
+    <Content Include="Admin\dist\img\user7-128x128.jpg" />
+    <Content Include="Admin\dist\img\user8-128x128.jpg" />
+    <Content Include="Admin\docs\404.html" />
+    <Content Include="Admin\docs\assets\css\adminlte.css" />
+    <Content Include="Admin\docs\assets\css\adminlte.min.css" />
+    <Content Include="Admin\docs\assets\css\alt\adminlte.components.css" />
+    <Content Include="Admin\docs\assets\css\alt\adminlte.components.min.css" />
+    <Content Include="Admin\docs\assets\css\alt\adminlte.core.css" />
+    <Content Include="Admin\docs\assets\css\alt\adminlte.core.min.css" />
+    <Content Include="Admin\docs\assets\css\alt\adminlte.extra-components.css" />
+    <Content Include="Admin\docs\assets\css\alt\adminlte.extra-components.min.css" />
+    <Content Include="Admin\docs\assets\css\alt\adminlte.pages.css" />
+    <Content Include="Admin\docs\assets\css\alt\adminlte.pages.min.css" />
+    <Content Include="Admin\docs\assets\css\alt\adminlte.plugins.css" />
+    <Content Include="Admin\docs\assets\css\alt\adminlte.plugins.min.css" />
+    <Content Include="Admin\docs\assets\css\docs.css" />
+    <Content Include="Admin\docs\assets\css\highlighter.css" />
+    <Content Include="Admin\docs\assets\img\AdminLTELogo.png" />
+    <Content Include="Admin\docs\assets\img\logo-xl.png" />
+    <Content Include="Admin\docs\assets\img\logo-xs.png" />
+    <Content Include="Admin\docs\assets\img\user1-128x128.jpg" />
+    <Content Include="Admin\docs\assets\img\user3-128x128.jpg" />
+    <Content Include="Admin\docs\assets\img\user4-128x128.jpg" />
+    <Content Include="Admin\docs\assets\img\user5-128x128.jpg" />
+    <Content Include="Admin\docs\assets\img\user6-128x128.jpg" />
+    <Content Include="Admin\docs\assets\img\user7-128x128.jpg" />
+    <Content Include="Admin\docs\assets\img\user8-128x128.jpg" />
+    <Content Include="Admin\docs\assets\js\adminlte.js" />
+    <Content Include="Admin\docs\assets\js\adminlte.min.js" />
+    <Content Include="Admin\docs\assets\js\demo.js" />
+    <Content Include="Admin\docs\assets\js\pages\dashboard.js" />
+    <Content Include="Admin\docs\assets\js\pages\dashboard2.js" />
+    <Content Include="Admin\docs\assets\js\pages\dashboard3.js" />
+    <Content Include="Admin\docs\assets\plugins\bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="Admin\docs\assets\plugins\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="Admin\docs\assets\plugins\bootstrap\js\bootstrap.js" />
+    <Content Include="Admin\docs\assets\plugins\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Admin\docs\assets\plugins\fontawesome-free\css\all.css" />
+    <Content Include="Admin\docs\assets\plugins\fontawesome-free\css\all.min.css" />
+    <Content Include="Admin\docs\assets\plugins\fontawesome-free\css\brands.css" />
+    <Content Include="Admin\docs\assets\plugins\fontawesome-free\css\brands.min.css" />
+    <Content Include="Admin\docs\assets\plugins\fontawesome-free\css\fontawesome.css" />
+    <Content Include="Admin\docs\assets\plugins\fontawesome-free\css\fontawesome.min.css" />
+    <Content Include="Admin\docs\assets\plugins\fontawesome-free\css\regular.css" />
+    <Content Include="Admin\docs\assets\plugins\fontawesome-free\css\regular.min.css" />
+    <Content Include="Admin\docs\assets\plugins\fontawesome-free\css\solid.css" />
+    <Content Include="Admin\docs\assets\plugins\fontawesome-free\css\solid.min.css" />
+    <Content Include="Admin\docs\assets\plugins\fontawesome-free\css\svg-with-js.css" />
+    <Content Include="Admin\docs\assets\plugins\fontawesome-free\css\svg-with-js.min.css" />
+    <Content Include="Admin\docs\assets\plugins\fontawesome-free\css\v4-shims.css" />
+    <Content Include="Admin\docs\assets\plugins\fontawesome-free\css\v4-shims.min.css" />
+    <Content Include="Admin\docs\assets\plugins\fontawesome-free\webfonts\fa-brands-400.svg" />
+    <Content Include="Admin\docs\assets\plugins\fontawesome-free\webfonts\fa-regular-400.svg" />
+    <Content Include="Admin\docs\assets\plugins\fontawesome-free\webfonts\fa-solid-900.svg" />
+    <Content Include="Admin\docs\assets\plugins\jquery\core.js" />
+    <Content Include="Admin\docs\assets\plugins\jquery\jquery.js" />
+    <Content Include="Admin\docs\assets\plugins\jquery\jquery.min.js" />
+    <Content Include="Admin\docs\assets\plugins\jquery\jquery.slim.js" />
+    <Content Include="Admin\docs\assets\plugins\jquery\jquery.slim.min.js" />
+    <Content Include="Admin\docs\assets\plugins\overlayScrollbars\css\OverlayScrollbars.css" />
+    <Content Include="Admin\docs\assets\plugins\overlayScrollbars\css\OverlayScrollbars.min.css" />
+    <Content Include="Admin\docs\assets\plugins\overlayScrollbars\js\jquery.overlayScrollbars.js" />
+    <Content Include="Admin\docs\assets\plugins\overlayScrollbars\js\jquery.overlayScrollbars.min.js" />
+    <Content Include="Admin\docs\assets\plugins\overlayScrollbars\js\OverlayScrollbars.js" />
+    <Content Include="Admin\docs\assets\plugins\overlayScrollbars\js\OverlayScrollbars.min.js" />
+    <Content Include="Admin\docs\assets\plugins\popper\esm\popper-utils.js" />
+    <Content Include="Admin\docs\assets\plugins\popper\esm\popper-utils.min.js" />
+    <Content Include="Admin\docs\assets\plugins\popper\esm\popper.js" />
+    <Content Include="Admin\docs\assets\plugins\popper\esm\popper.min.js" />
+    <Content Include="Admin\docs\assets\plugins\popper\popper-utils.js" />
+    <Content Include="Admin\docs\assets\plugins\popper\popper-utils.min.js" />
+    <Content Include="Admin\docs\assets\plugins\popper\popper.js" />
+    <Content Include="Admin\docs\assets\plugins\popper\popper.min.js" />
+    <Content Include="Admin\docs\assets\plugins\popper\umd\popper-utils.js" />
+    <Content Include="Admin\docs\assets\plugins\popper\umd\popper-utils.min.js" />
+    <Content Include="Admin\docs\assets\plugins\popper\umd\popper.js" />
+    <Content Include="Admin\docs\assets\plugins\popper\umd\popper.min.js" />
+    <Content Include="Admin\docs\_includes\foot.html" />
+    <Content Include="Admin\docs\_includes\footer.html" />
+    <Content Include="Admin\docs\_includes\head.html" />
+    <Content Include="Admin\docs\_includes\navbar.html" />
+    <Content Include="Admin\docs\_includes\sidebar.html" />
+    <Content Include="Admin\docs\_layouts\default.html" />
+    <Content Include="Admin\docs\_layouts\home.html" />
+    <Content Include="Admin\docs\_layouts\page.html" />
+    <Content Include="Admin\docs\_layouts\post.html" />
+    <Content Include="Admin\plugins\bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="Admin\plugins\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="Admin\plugins\bootstrap\js\bootstrap.js" />
+    <Content Include="Admin\plugins\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Admin\plugins\fontawesome-free\css\all.css" />
+    <Content Include="Admin\plugins\fontawesome-free\css\all.min.css" />
+    <Content Include="Admin\plugins\fontawesome-free\css\brands.css" />
+    <Content Include="Admin\plugins\fontawesome-free\css\brands.min.css" />
+    <Content Include="Admin\plugins\fontawesome-free\css\fontawesome.css" />
+    <Content Include="Admin\plugins\fontawesome-free\css\fontawesome.min.css" />
+    <Content Include="Admin\plugins\fontawesome-free\css\regular.css" />
+    <Content Include="Admin\plugins\fontawesome-free\css\regular.min.css" />
+    <Content Include="Admin\plugins\fontawesome-free\css\solid.css" />
+    <Content Include="Admin\plugins\fontawesome-free\css\solid.min.css" />
+    <Content Include="Admin\plugins\fontawesome-free\css\svg-with-js.css" />
+    <Content Include="Admin\plugins\fontawesome-free\css\svg-with-js.min.css" />
+    <Content Include="Admin\plugins\fontawesome-free\css\v4-shims.css" />
+    <Content Include="Admin\plugins\fontawesome-free\css\v4-shims.min.css" />
+    <Content Include="Admin\plugins\fontawesome-free\webfonts\fa-brands-400.svg" />
+    <Content Include="Admin\plugins\fontawesome-free\webfonts\fa-regular-400.svg" />
+    <Content Include="Admin\plugins\fontawesome-free\webfonts\fa-solid-900.svg" />
+    <Content Include="Admin\plugins\jquery\core.js" />
+    <Content Include="Admin\plugins\jquery\jquery.js" />
+    <Content Include="Admin\plugins\jquery\jquery.min.js" />
+    <Content Include="Admin\plugins\jquery\jquery.slim.js" />
+    <Content Include="Admin\plugins\jquery\jquery.slim.min.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\card.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Admin\composer.json" />
+    <Content Include="Admin\dist\css\adminlte.css.map" />
+    <Content Include="Admin\dist\css\adminlte.min.css.map" />
+    <Content Include="Admin\dist\css\alt\adminlte.components.css.map" />
+    <Content Include="Admin\dist\css\alt\adminlte.components.min.css.map" />
+    <Content Include="Admin\dist\css\alt\adminlte.core.css.map" />
+    <Content Include="Admin\dist\css\alt\adminlte.core.min.css.map" />
+    <Content Include="Admin\dist\css\alt\adminlte.extra-components.css.map" />
+    <Content Include="Admin\dist\css\alt\adminlte.extra-components.min.css.map" />
+    <Content Include="Admin\dist\css\alt\adminlte.pages.css.map" />
+    <Content Include="Admin\dist\css\alt\adminlte.pages.min.css.map" />
+    <Content Include="Admin\dist\css\alt\adminlte.plugins.css.map" />
+    <Content Include="Admin\dist\css\alt\adminlte.plugins.min.css.map" />
+    <Content Include="Admin\docs\.npmignore" />
+    <Content Include="Admin\docs\assets\css\adminlte.css.map" />
+    <Content Include="Admin\docs\assets\css\adminlte.min.css.map" />
+    <Content Include="Admin\docs\assets\css\alt\adminlte.components.css.map" />
+    <Content Include="Admin\docs\assets\css\alt\adminlte.components.min.css.map" />
+    <Content Include="Admin\docs\assets\css\alt\adminlte.core.css.map" />
+    <Content Include="Admin\docs\assets\css\alt\adminlte.core.min.css.map" />
+    <Content Include="Admin\docs\assets\css\alt\adminlte.extra-components.css.map" />
+    <Content Include="Admin\docs\assets\css\alt\adminlte.extra-components.min.css.map" />
+    <Content Include="Admin\docs\assets\css\alt\adminlte.pages.css.map" />
+    <Content Include="Admin\docs\assets\css\alt\adminlte.pages.min.css.map" />
+    <Content Include="Admin\docs\assets\css\alt\adminlte.plugins.css.map" />
+    <Content Include="Admin\docs\assets\css\alt\adminlte.plugins.min.css.map" />
+    <Content Include="Admin\docs\assets\js\adminlte.js.map" />
+    <Content Include="Admin\docs\assets\js\adminlte.min.js.map" />
+    <Content Include="Admin\docs\assets\plugins\bootstrap\js\bootstrap.bundle.js.map" />
+    <Content Include="Admin\docs\assets\plugins\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <Content Include="Admin\docs\assets\plugins\bootstrap\js\bootstrap.js.map" />
+    <Content Include="Admin\docs\assets\plugins\bootstrap\js\bootstrap.min.js.map" />
+    <Content Include="Admin\docs\assets\plugins\fontawesome-free\webfonts\fa-brands-400.eot" />
+    <Content Include="Admin\docs\assets\plugins\fontawesome-free\webfonts\fa-brands-400.ttf" />
+    <Content Include="Admin\docs\assets\plugins\fontawesome-free\webfonts\fa-brands-400.woff" />
+    <Content Include="Admin\docs\assets\plugins\fontawesome-free\webfonts\fa-brands-400.woff2" />
+    <Content Include="Admin\docs\assets\plugins\fontawesome-free\webfonts\fa-regular-400.eot" />
+    <Content Include="Admin\docs\assets\plugins\fontawesome-free\webfonts\fa-regular-400.ttf" />
+    <Content Include="Admin\docs\assets\plugins\fontawesome-free\webfonts\fa-regular-400.woff" />
+    <Content Include="Admin\docs\assets\plugins\fontawesome-free\webfonts\fa-regular-400.woff2" />
+    <Content Include="Admin\docs\assets\plugins\fontawesome-free\webfonts\fa-solid-900.eot" />
+    <Content Include="Admin\docs\assets\plugins\fontawesome-free\webfonts\fa-solid-900.ttf" />
+    <Content Include="Admin\docs\assets\plugins\fontawesome-free\webfonts\fa-solid-900.woff" />
+    <Content Include="Admin\docs\assets\plugins\fontawesome-free\webfonts\fa-solid-900.woff2" />
+    <Content Include="Admin\docs\assets\plugins\jquery\jquery.min.map" />
+    <Content Include="Admin\docs\assets\plugins\jquery\jquery.slim.min.map" />
+    <Content Include="Admin\docs\assets\plugins\popper\esm\popper-utils.js.map" />
+    <Content Include="Admin\docs\assets\plugins\popper\esm\popper-utils.min.js.map" />
+    <Content Include="Admin\docs\assets\plugins\popper\esm\popper.js.map" />
+    <Content Include="Admin\docs\assets\plugins\popper\esm\popper.min.js.map" />
+    <Content Include="Admin\docs\assets\plugins\popper\popper-utils.js.map" />
+    <Content Include="Admin\docs\assets\plugins\popper\popper-utils.min.js.map" />
+    <Content Include="Admin\docs\assets\plugins\popper\popper.js.map" />
+    <Content Include="Admin\docs\assets\plugins\popper\popper.min.js.map" />
+    <Content Include="Admin\docs\assets\plugins\popper\umd\popper-utils.js.map" />
+    <Content Include="Admin\docs\assets\plugins\popper\umd\popper-utils.min.js.map" />
+    <Content Include="Admin\docs\assets\plugins\popper\umd\popper.js.flow" />
+    <Content Include="Admin\docs\assets\plugins\popper\umd\popper.js.map" />
+    <Content Include="Admin\docs\assets\plugins\popper\umd\popper.min.js.map" />
+    <Content Include="Admin\docs\assets\plugins\popper\umd\poppper.js.flow" />
+    <Content Include="Admin\docs\browser-support.md" />
+    <Content Include="Admin\docs\components\boxes.md" />
+    <Content Include="Admin\docs\components\cards.md" />
+    <Content Include="Admin\docs\components\control-sidebar.md" />
+    <Content Include="Admin\docs\components\direct-chat.md" />
+    <Content Include="Admin\docs\components\main-header.md" />
+    <Content Include="Admin\docs\components\main-sidebar.md" />
+    <Content Include="Admin\docs\components\miscellaneous.md" />
+    <Content Include="Admin\docs\components\plugins.md" />
+    <Content Include="Admin\docs\components\ribbons.md" />
+    <Content Include="Admin\docs\components\timeline.md" />
+    <Content Include="Admin\docs\dependencies.md" />
+    <Content Include="Admin\docs\faq.md" />
+    <Content Include="Admin\docs\Gemfile" />
+    <Content Include="Admin\docs\implementations.md" />
+    <Content Include="Admin\docs\index.md" />
+    <Content Include="Admin\docs\javascript\card-refresh.md" />
+    <Content Include="Admin\docs\javascript\card-widget.md" />
+    <Content Include="Admin\docs\javascript\control-sidebar.md" />
+    <Content Include="Admin\docs\javascript\direct-chat.md" />
+    <Content Include="Admin\docs\javascript\layout.md" />
+    <Content Include="Admin\docs\javascript\push-menu.md" />
+    <Content Include="Admin\docs\javascript\toasts.md" />
+    <Content Include="Admin\docs\javascript\todo-list.md" />
+    <Content Include="Admin\docs\javascript\treeview.md" />
+    <Content Include="Admin\docs\layout.md" />
+    <Content Include="Admin\docs\license.md" />
+    <Content Include="Admin\docs\upgrade-guide.md" />
+    <Content Include="Admin\docs\_config.yml" />
+    <Content Include="Admin\package-lock.json" />
+    <Content Include="Admin\package.json" />
+    <Content Include="Admin\plugins\.npmignore" />
+    <Content Include="Admin\plugins\bootstrap\js\bootstrap.bundle.js.map" />
+    <Content Include="Admin\plugins\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <Content Include="Admin\plugins\bootstrap\js\bootstrap.js.map" />
+    <Content Include="Admin\plugins\bootstrap\js\bootstrap.min.js.map" />
+    <Content Include="Admin\plugins\fontawesome-free\webfonts\fa-brands-400.eot" />
+    <Content Include="Admin\plugins\fontawesome-free\webfonts\fa-brands-400.ttf" />
+    <Content Include="Admin\plugins\fontawesome-free\webfonts\fa-brands-400.woff" />
+    <Content Include="Admin\plugins\fontawesome-free\webfonts\fa-brands-400.woff2" />
+    <Content Include="Admin\plugins\fontawesome-free\webfonts\fa-regular-400.eot" />
+    <Content Include="Admin\plugins\fontawesome-free\webfonts\fa-regular-400.ttf" />
+    <Content Include="Admin\plugins\fontawesome-free\webfonts\fa-regular-400.woff" />
+    <Content Include="Admin\plugins\fontawesome-free\webfonts\fa-regular-400.woff2" />
+    <Content Include="Admin\plugins\fontawesome-free\webfonts\fa-solid-900.eot" />
+    <Content Include="Admin\plugins\fontawesome-free\webfonts\fa-solid-900.ttf" />
+    <Content Include="Admin\plugins\fontawesome-free\webfonts\fa-solid-900.woff" />
+    <Content Include="Admin\plugins\fontawesome-free\webfonts\fa-solid-900.woff2" />
+    <Content Include="Admin\plugins\jquery\jquery.min.map" />
+    <Content Include="Admin\plugins\jquery\jquery.slim.min.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -163,7 +446,12 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\AdminCategory\Index.cshtml" />
+    <Content Include="Views\AdminCategory\CategoryAdd.cshtml" />
+    <Content Include="Views\AdminCategory\UpdateCategory.cshtml" />
+    <Content Include="Views\AdminHome\Index.cshtml" />
+    <Content Include="Views\Writer\Index.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -182,11 +470,29 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj">
+      <Project>{d4703d1e-926c-48a8-8c47-274efed3f80f}</Project>
+      <Name>BusinessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
+      <Project>{4a3dde98-b1bf-4676-9357-efedae0f06c3}</Project>
+      <Name>DataAccessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EntityLayer\EntityLayer.csproj">
+      <Project>{9aff28d5-ac19-44f1-beab-02812e8b9bc5}</Project>
+      <Name>EntityLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
@@ -215,7 +521,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
